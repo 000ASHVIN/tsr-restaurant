@@ -55,7 +55,7 @@
         	<?php $x=0;
 			foreach($kitchenlist as $kitchen){ $x++;
 			?>
-            <li class="<?php if($x==1){echo "active";}?>"><a href="#tab<?php echo $x;?>" data-toggle="tab"><?php echo $kitchen->kitchen_name;?></a></li>
+            <li class="<?php if($x==1){echo "active";}?>"><a href="#tab<?php echo $x;?>" data-toggle="tab" id="kitchen-<?php echo $x;?>" class="kitchen-tab-li" data-kitchen="<?php echo $x;?>"><?php echo $kitchen->kitchen_name;?></a></li>
             <?php } ?>
         </ul>
         <!-- Tab panels -->
@@ -300,5 +300,15 @@
                     new Audio(mysound + audio[0]).play();
                 }
             })
+
+            $(document).ready(function() {
+                var selectedKitchenId = localStorage.getItem("selectedKitchenId");
+                console.log(selectedKitchenId)
+                $('#kitchen-'+selectedKitchenId).click();
+
+                $('.kitchen-tab-li').click(function() {
+                    localStorage.setItem("selectedKitchenId", $(this).data('kitchen'));
+                })
+            });
             </script>
 
