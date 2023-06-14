@@ -66,9 +66,9 @@ $( window ).load(function() {
 				  data: dataString,
 				  success: function(data){
 					  if(data==1){
-						  var mysound = baseurl + "assets/";
-						  var audio = ["beep-08b.mp3"];
-						  new Audio(mysound + audio[0]).play();
+						var mysound = baseurl + "assets/";
+						var audio = ["beep-08b.mp3"];
+						new Audio(mysound + audio[0]).play();
 					  $('input[name="item'+ordid+kitid+'"]:checked').removeAttr('disabled');
 					  $("#topsec"+ordid+kitid).removeClass("pending");
 					  $("#isprepare"+ordid+kitid).removeClass("display-none");

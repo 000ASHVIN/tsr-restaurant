@@ -84,6 +84,7 @@
 							$allchecked2="";
 							$date_arr=array();
 							$c=0;
+                            $flag = false;
 							foreach($alliteminfo as $single){
 								$date_arr[$c]=$single->cookedtime;
 								$allisexit=$this->db->select('tbl_kitchen_order.*')->from('tbl_kitchen_order')->where('orderid',$orderinfo->order_id)->where('kitchenid',$orderinfo->kitchenid)->where('itemid',$single->menu_id)->where('varient',$single->variantid)->get()->num_rows();
@@ -98,6 +99,7 @@
 							
 						if( strpos($allchecked2, '0') !== false ) {
 								  $isaccept= 0;
+                                  $flag = true;
 									}
 								 else{
 									 $isaccept= 1;
@@ -289,4 +291,14 @@
             </div><!-- /.modal-dialog -->
         </div>
         <script src="<?php echo base_url('application/modules/ordermanage/assets/js/kitchen.js'); ?>" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                var flag =  '<?php echo $flag;?>';
+                if(flag == 1){
+                    var mysound = baseurl + "assets/";
+                    var audio = ["beep-08b.mp3"];
+                    new Audio(mysound + audio[0]).play();
+                }
+            })
+            </script>
 

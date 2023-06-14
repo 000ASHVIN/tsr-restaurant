@@ -3900,8 +3900,8 @@ class Order extends MX_Controller {
 				
 				$itemids=explode(',',$itemid);
 				$varientids=explode(',',$varient);
-				$itemidsv=array_values(trim($itemids,','));
-				$varientidsv=array_values(trim($varientids,','));
+				// $itemidsv=array_values(trim($itemids,','));
+				// $varientidsv=array_values(trim($varientids,','));
 				$i=0;
 				foreach($itemids as $sitem){
 					$vaids=$varientids[$i];
@@ -4087,7 +4087,7 @@ class Order extends MX_Controller {
 		   
 		}
 	public function markasdone(){
-		$this->permission->method('ordermanage','read')->redirect();
+			$this->permission->method('ordermanage','read')->redirect();
 			$orderid=$this->input->post('orderid');
 			$itemid=$this->input->post('item',true);
 			$varient=$this->input->post('varient',true);
@@ -4127,7 +4127,7 @@ class Order extends MX_Controller {
 			$data['kitchenid']=$kid;
 			$data['iteminfo']=$alliteminfo;
 		   $data['module'] = "ordermanage";
-		   $data['page']   = "kitchen_view";   
+		   $data['page']   = "kitchen_view";
 		   $this->load->view('kitchen_view',$data);
 		}
 	public function counterboard(){
