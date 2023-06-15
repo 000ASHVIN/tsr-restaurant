@@ -2317,10 +2317,18 @@ class Order extends MX_Controller {
 		$dataup['waiter_id']     = $this->input->post('waiter',true);
 		$dataup['isthirdparty']  = $this->input->post('delivercom',true);
 		$dataup['table_no']      = $this->input->post('tableid',true);
-		$dataup['order_status']  = $this->input->post('orderstatus',true);
+		// $dataup['order_status']  = $this->input->post('orderstatus',true);
+		$dataup['order_status']  = 1;
+		$dataup['nofification']  = 0;
+
 		$dataup['totalamount']   = $this->input->post('orginattotal',true);
 		
 		$updared=$this->order_model->update_info('customer_order', $dataup, 'order_id', $orderid);
+
+		$menu_data['allfoodready'] = NULL;
+		$this->db->where('order_id', $orderid);
+        $this->db->update('order_menu', $menu_data);
+
 		$taxinfos = $this->taxchecking();
 		if(!empty($taxinfos)){
 			$multiplletaxvalue = $this->input->post('multiplletaxvalue',true);
@@ -3854,6 +3862,9 @@ class Order extends MX_Controller {
 				  }
 				$data['kitchenlist']=$kitchenlist;
 				}
+				// echo "<pre>";
+				// print_r($data['kitcheninfo']);
+				// exit;
 		   $data['title']="Counter Dashboard";
 		   $data['module'] = "ordermanage";
 		   $data['page']   = "allkitchen";   
@@ -4110,7 +4121,7 @@ class Order extends MX_Controller {
 						$ready = array(
 						'preparetime' => date('Y-m-d H:i:s'),
 						'orderid'     => $orderid,
-						'menuid'     => $menuid,
+						'menuid'     => $sitem,
 						'varient'     => $varient
 					  );
 					 $this->db->insert('tbl_orderprepare',$ready);
