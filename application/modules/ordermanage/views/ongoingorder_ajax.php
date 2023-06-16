@@ -87,6 +87,9 @@
                                           <label class="text-muted"><?php echo display('ord_num');?>:<?php echo $onprocess->saleinvoice;?></label>
                                         </p>
                                         <p class="m-0">
+                                          <label class="text-muted"><?php echo 'Customer Name'?>:<?php echo $onprocess->customer_name;?></label>
+                                        </p>
+                                        <p class="m-0">
                                           <label class="text-muted"><?php echo display('waiter');?>:<?php echo $onprocess->first_name.' '.$onprocess->last_name;?></label>
                                         </p>
                                          <?php 

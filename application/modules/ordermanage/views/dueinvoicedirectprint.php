@@ -381,6 +381,9 @@ body
       <h4><?php echo $storeinfo->storename;?></h4>
       <p class="my-0"><?php echo $storeinfo->address;?></p>
     </div>
+    <div class="item-info">
+          <h5 class="item-title"><?php echo 'Customer Name';?>: <?php echo $customerinfo->customer_name;?></h5>
+    </div>
     <div class="invoice_address">
       <div class="row-data">
         <div class="item-info">
