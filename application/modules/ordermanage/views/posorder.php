@@ -345,16 +345,16 @@ function current_version(){
               <input class="form-control simple-control" name ="customer_name" id="name" type="text" placeholder="Customer Name"  required="">
             </div>
           </div>
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="email" class="col-sm-3 col-form-label"><?php echo display('email');?> <i class="text-danger">*</i></label>
             <div class="col-sm-6">
               <input class="form-control" name ="email" id="email" type="email" placeholder="Customer Email"  required="">
             </div>
-          </div>
+          </div> -->
           <div class="form-group row">
-            <label for="mobile" class="col-sm-3 col-form-label"><?php echo display('mobile');?> <i class="text-danger">*</i></label>
+            <label for="mobile" class="col-sm-3 col-form-label"><?php echo display('mobile');?></label>
             <div class="col-sm-6">
-              <input class="form-control" name ="mobile" id="mobile" type="number" placeholder="Customer Mobile"  required="" min="0">
+              <input class="form-control" name ="mobile" id="mobile" type="number" placeholder="Customer Mobile" min="0">
             </div>
           </div>
           <div class="form-group row">
@@ -363,12 +363,12 @@ function current_version(){
               <textarea class="form-control" name="address" id="address " rows="3" placeholder="Customer Address"></textarea>
             </div>
           </div>
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="address " class="col-sm-3 col-form-label"><?php echo display('fav_addesrr');?></label>
             <div class="col-sm-6">
               <textarea class="form-control" name="favaddress" id="favaddress " rows="3" placeholder="Customer Address"></textarea>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo display('close');?> </button>

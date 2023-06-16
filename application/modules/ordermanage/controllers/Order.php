@@ -48,8 +48,8 @@ class Order extends MX_Controller {
 	public function insert_customer(){
 	  $this->permission->method('ordermanage','create')->redirect();
 	  $this->form_validation->set_rules('customer_name', 'Customer Name'  ,'required|max_length[100]');
-	  $this->form_validation->set_rules('email', display('email')  ,'required');
-	  $this->form_validation->set_rules('mobile', display('mobile')  ,'required');
+	//   $this->form_validation->set_rules('email', display('email')  ,'required');
+	  $this->form_validation->set_rules('mobile', display('mobile'));
 	  $savedid=$this->session->userdata('id');
 	   
 	  $coa = $this->order_model->headcode();
@@ -94,13 +94,13 @@ class Order extends MX_Controller {
 	   'cuntomer_no'     	=> $sino,
 	   'membership_type'	=> $pointsys,
 	   'customer_name'     	=> $this->input->post('customer_name',true),  
-	   'customer_email'     =>$this->input->post('email',true),
+	//    'customer_email'     =>$this->input->post('email',true),
 	   'customer_phone'     => $this->input->post('mobile',true),
 	   'customer_address'   => $this->input->post('address',true),
-	   'favorite_delivery_address'     =>$this->input->post('favaddress',true), 
+	//    'favorite_delivery_address'     =>$this->input->post('favaddress',true), 
 	   'is_active'        => 1,
 	  );
-	 $logData =array(
+	 $logData =array(	
 	   'action_page'         => "Add Customer",
 	   'action_done'     	 => "Insert Data", 
 	   'remarks'             => "Customer is Created",
