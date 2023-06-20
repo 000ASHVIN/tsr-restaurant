@@ -1,4 +1,31 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/modules/ordermanage/assets/css/posordernew.css'); ?>">
+<style>
+  @media screen and (max-width: 768px) {
+    .manualDropdown{
+        display: none;
+    }                             
+    .dropdown{
+        display: block !important;
+    }
+    .customer-info{
+        display: block !important;
+    }
+    .customer{
+        display: none;
+    }
+}
+@media screen and (min-width: 768px) {
+    .dropdown{
+        display: none;
+    }
+    .customer-info{
+        display: none;
+    }
+    .productlist{
+        display: block!important;
+    }
+}
+</style>
 <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('application/modules/ordermanage/assets/js/postop.js'); ?>" type="text/javascript"></script>
 <?php
@@ -1267,6 +1294,13 @@ foreach ($scan1 as $file) {
 }
 //$this->load->view('include/pos_script');
 ?>
+<script>
+  $(document).ready(function() {
+    if($(window).width() > 768) {
+      $('.customer-info').remove()
+    }
+  })
+</script>
 <script src="<?php echo base_url('ordermanage/order/possettingjs') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('ordermanage/order/quickorderjs') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('application/modules/ordermanage/assets/js/possetting.js'); ?>" type="text/javascript"></script>
