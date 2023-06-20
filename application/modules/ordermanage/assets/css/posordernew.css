@@ -176,28 +176,3 @@ listcat.listcat {
         padding: 0 9px;
         margin-right: 6px;
     }
-@media (max-width: 768px) {
-    .manualDropdown{
-        display: none;
-    }                             
-    .dropdown{
-        display: block !important;
-    }
-    .customer-info{
-        display: block !important;
-    }
-    .customer{
-        display: none;
-    }
-}
-@media (min-width: 768px) {
-    .dropdown{
-        display: none;
-    }
-    .customer-info{
-        display: none;
-    }
-    .productlist{
-        display: block!important;
-    }
-}

@@ -64,10 +64,10 @@
                     <input type="password"  placeholder="<?php echo display('password') ?>" name="password" id="password" class="form-control fs-15px" autocomplete="off"> 
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="captcha"><?php echo $captcha_image ?></label>
+                    <!-- <label class="control-label" for="captcha"><?php echo $captcha_image ?></label>
                     
                     <input type="captcha"  placeholder="<?php echo display('captcha') ?>" name="captcha" id="captcha" class="form-control fs-15px" autocomplete="off"> 
-                    <input type="hidden" name="g_captcha" value="<?php echo $captcha_word?>">
+                    <input type="hidden" name="g_captcha" value="<?php echo $captcha_word?>"> -->
                 </div> 
                 <button type="submit" class="btn btn-success btn-lg btn-block fw-500 mb-3"><?php echo display('login') ?></button>
                 

@@ -4,7 +4,7 @@
     .manualDropdown{
         display: none;
     }                             
-    .dropdown{
+    .categories-dropdown{
         display: block !important;
     }
     .customer-info{
@@ -15,7 +15,7 @@
     }
 }
 @media screen and (min-width: 768px) {
-    .dropdown{
+    .categories-dropdown{
         display: none;
     }
     .customer-info{
@@ -831,7 +831,7 @@ foreach ($scan as $file) {
                           <?php
                           $categoryOptions = array_merge(['All' => 'All'], $categorylist);
                           ?>
-                          <div class="col-md-3 form-group dropdown">
+                          <div class="col-md-3 form-group categories-dropdown">
                             <label for="category_id">Categories</label>
                             <?php echo form_dropdown('category_id', $categoryOptions, 'All', 'class="form-control" id="category_id" required onchange="getslcategory(this.value)"'); ?>
                           </div>
@@ -1241,6 +1241,7 @@ foreach ($scan as $file) {
               </div>
             </div>
           </div>
+        </div>
         </div>
         <div class="tab-pane fade" id="profile">
           <div class="row m-0" id="onprocesslist"> </div>

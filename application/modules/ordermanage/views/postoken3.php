@@ -3,6 +3,9 @@
         <td>
 
           <table border="0" width="100%">
+		  	<tr>
+              <td align="right"><nobr><date>Date: <?php echo date('Y-m-d h:i') ?></nobr></td>
+            </tr>
             <tr>
               <td align="center"><nobr><date><?php echo display('token_no')?>:<?php echo $orderinfo->tokenno;?></nobr><br/><?php echo $customerinfo->customer_name;?></td>
             </tr>
