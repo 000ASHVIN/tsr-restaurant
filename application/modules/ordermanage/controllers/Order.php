@@ -2325,9 +2325,9 @@ class Order extends MX_Controller {
 		
 		$updared=$this->order_model->update_info('customer_order', $dataup, 'order_id', $orderid);
 
-		$menu_data['allfoodready'] = NULL;
-		$this->db->where('order_id', $orderid);
-        $this->db->update('order_menu', $menu_data);
+		// $menu_data['allfoodready'] = NULL;
+		// $this->db->where('order_id', $orderid);
+        // $this->db->update('order_menu', $menu_data);
 
 		$taxinfos = $this->taxchecking();
 		if(!empty($taxinfos)){
@@ -3819,6 +3819,7 @@ class Order extends MX_Controller {
 			$assignketchen=$this->db->select('user.id,tbl_assign_kitchen.kitchen_id,tbl_assign_kitchen.userid,tbl_kitchen.kitchen_name')->from('tbl_assign_kitchen')->join('user','user.id=tbl_assign_kitchen.userid','left')->join('tbl_kitchen','tbl_kitchen.kitchenid=tbl_assign_kitchen.kitchen_id')->where('tbl_assign_kitchen.userid',$uid)->get()->result();
 			if(!empty($assignketchen)){
 			$data['kitchenlist']=$assignketchen;
+			$i = 0;
 			foreach($assignketchen as $kitchen){
 				  $data['kitcheninfo'][$i]['kitchenid']=$kitchen->kitchen_id;
 				  $orderinfo=$this->order_model->kitchen_ongoingorder($kitchen->kitchen_id);
@@ -3827,7 +3828,7 @@ class Order extends MX_Controller {
 				  $m=0;
 				  foreach($orderinfo as $orderlist){
 					  $billtotal=round($orderlist->totalamount);
-					  if(($onprocess->orderacceptreject==0 || empty($orderlist->orderacceptreject)) && ($orderlist->cutomertype==2)){}
+					  if(($orderlist->orderacceptreject==0 || empty($orderlist->orderacceptreject)) && ($orderlist->cutomertype==2)){}
 					  else{
 						  $data['kitcheninfo'][$i]['orderlist'][$m]=$orderlist;
 						 $data['kitcheninfo'][$i]['iteminfo'][$m]= $this->order_model->customerorderkitchen($orderlist->order_id,$kitchen->kitchen_id);

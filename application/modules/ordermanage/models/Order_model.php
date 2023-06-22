@@ -1017,6 +1017,7 @@ public function customer_dropdown()
 		$this->db->join('item_foods','order_menu.menu_id=item_foods.ProductsID','left');
 		$this->db->join('variant','order_menu.varientid=variant.variantid','left');
 		$this->db->where('order_menu.order_id',$id);
+		$this->db->where('order_menu.allfoodready',NULL);
 		$this->db->where('item_foods.kitchenid',$kitchen);
 		$query = $this->db->get();
 		$orderinfo=$query->result();		
