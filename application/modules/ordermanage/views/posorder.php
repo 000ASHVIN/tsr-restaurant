@@ -817,10 +817,10 @@ foreach ($scan as $file) {
                       <div class="col-md-12">
                         <form class="navbar-search" method="get" action="<?php echo base_url("ordermanage/order/pos_invoice") ?>">
                           <label class="sr-only screen-reader-text" for="search"><?php echo display('search') ?>:</label>
-                          <!-- <div class="input-group">
+                          <div class="input-group">
                             <select id="product_name" class="form-control dont-select-me  search-field" dir="ltr" name="s">
                             </select>
-                          </div> -->
+                          </div>
                         </form>
                       </div>
                     </div>
@@ -829,11 +829,18 @@ foreach ($scan as $file) {
                         <div class="product-category">
                           <div class="listcatnew manualDropdown" onclick="getslcategory('')"><?php echo display('all') ?> </div>
                           <?php
-                          $categoryOptions = array_merge(['All' => 'All'], $categorylist);
+                          // $categoryOptions = array_merge(['All' => 'All'], $categorylist);
+                          $categoryOptions[' '] = 'All';
+                          foreach ($allcategorylist as $category) {
+                            if (!empty($category->sub)) {}
+                            else {
+                              $categoryOptions[$category->CategoryID] = $category->Name;
+                            }
+                          }
                           ?>
                           <div class="col-md-3 form-group categories-dropdown">
                             <label for="category_id">Categories</label>
-                            <?php echo form_dropdown('category_id', $categoryOptions, 'All', 'class="form-control" id="category_id" required onchange="getslcategory(this.value)"'); ?>
+                            <?php echo form_dropdown('category_id', $categoryOptions, '', 'class="form-control" id="category_id" required onchange="getslcategory(this.value.trim())"'); ?>
                           </div>
 
                           <?php //$result = array_diff($categorylist, array("Select Food Category"));
