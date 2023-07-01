@@ -2019,10 +2019,28 @@ public function get_orderlist(){
 	public function collectcash($id,$tdate){
 		$crdate=date('Y-m-d H:i:s');
 		$where="bill.create_at Between '$tdate' AND '$crdate'";
+
+		$this->db->select('multipay_bill.multipay_id');
+        $this->db->from('multipay_bill');
+		$this->db->join('bill','bill.order_id=multipay_bill.order_id','left');
+		$this->db->join('payment_method','payment_method.payment_method_id=multipay_bill.payment_type_id','left');
+		$this->db->where('bill.create_by',$id);
+		$this->db->where($where);
+		$this->db->where('bill.bill_status',1);
+		$this->db->group_by('multipay_bill.order_id');
+		$query = $this->db->get();
+		$multipay_bill_ids=$query->result();
+
+		// $ids = [];
+		foreach($multipay_bill_ids as $multipay_id) {
+			$ids[] = $multipay_id->multipay_id;
+		}
+
 		$this->db->select('bill.*,multipay_bill.payment_type_id,SUM(multipay_bill.amount) as totalamount,payment_method.payment_method');
         $this->db->from('multipay_bill');
 		$this->db->join('bill','bill.order_id=multipay_bill.order_id','left');
 		$this->db->join('payment_method','payment_method.payment_method_id=multipay_bill.payment_type_id','left');
+		$this->db->where_in('multipay_bill.multipay_id', $ids);
 		$this->db->where('bill.create_by',$id);
 		$this->db->where($where);
 		$this->db->where('bill.bill_status',1);
