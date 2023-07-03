@@ -2040,7 +2040,7 @@ public function get_orderlist(){
         $this->db->from('multipay_bill');
 		$this->db->join('bill','bill.order_id=multipay_bill.order_id','left');
 		$this->db->join('payment_method','payment_method.payment_method_id=multipay_bill.payment_type_id','left');
-		$this->db->where_in('multipay_bill.multipay_id', $ids);
+		// $this->db->where_in('multipay_bill.multipay_id', $ids);
 		$this->db->where('bill.create_by',$id);
 		$this->db->where($where);
 		$this->db->where('bill.bill_status',1);
