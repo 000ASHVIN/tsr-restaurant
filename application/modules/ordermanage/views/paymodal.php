@@ -1,3 +1,43 @@
+<div class="modal modal1 fade" id="openpasswordCenter" tabindex="-1" role="dialog" aria-labelledby="openpasswordCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" id="dismissModal1" class="close"  aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="m-0 p-0">Verify Password</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="panel">
+                <div class="panel-body">
+                    <?php echo form_open('','method="post" name="verifyfrm" id="verifyfrm"')?>
+                    <input type="hidden" id="userid" name="id" value="<?php echo $this->session->userdata('id');?>" />
+                    
+                        <div class="col-md-12">
+                        <div class="form-group row">
+                            <label for="manage_password" class="col-sm-4 col-form-label"><?php echo display('password');?></label>
+                            <div class="col-sm-7">
+                            <input type="password" class="form-control" id="manage_password" name="manage_password" required=""/>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <div class="col-sm-11 pr-0">
+                                <a type="button" class="btn btn-success w-md m-b-5" onclick="verifydiscount()" >Verify Password</a>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
     <?php echo form_open('','method="get" class="navbar-search" name="sdf" id="paymodal-multiple-form"')?>
     <input name="<?php echo $this->security->get_csrf_token_name(); ?>" type="hidden" value="<?php echo $this->security->get_csrf_hash(); ?>" />
        <div class="modal-content">
@@ -68,7 +108,7 @@
            
                   <div class="col-md-8 row ">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="addDiscount" style="display: none;">
                         	
                         	<div class="form-group">
                             <label for="discounttt" class="col-form-label pb-2"><?php echo display('discount_type');?></label>
@@ -80,7 +120,7 @@
                             
                             
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 addDiscount" style="display: none;">
                         	<div class="form-group">
                             <?php if($settinginfo->discount_type==1){
 							 $disamount=$totalamount*$settinginfo->discountrate/100;
@@ -111,9 +151,15 @@
                             </div>  
                             </div>
                             <?php } ?>
-                            <div class="form-group" style="padding-top:<?php if($pointsys==1 && $membership>1){echo "35px";}else{ echo "28px";}?>">  
-                        	<button type="button" id="paymentnow" class="btn btn-success w-md m-b-5" ><?php echo display('payment');?></button>   
-                            </div>             	
+                           
+                            <div class="form-group" style="padding-top:<?php if($pointsys==1 && $membership>1){echo "35px";}else{ echo "28px";}?>;display:flex">  
+                                <div>
+                                    <button type="button" class="btn btn-success w-md m-b-5" style="margin-right: 10px;" id="discountAdded" data-toggle="modal" data-target="#openpasswordCenter">Add Discount</button>
+                                </div>
+                                <div>   
+                                    <button type="button" id="paymentnow" class="btn btn-success w-md m-b-5" ><?php echo display('payment');?></button>
+                                </div>
+                            </div>  
                         </div>
                     </div>
                     <div id="adddiscount" class="display-none">
@@ -245,3 +291,16 @@
     </form>      
     <input type="hidden" id="get-order-flag" value="1">
 <script src="<?php echo base_url('application/modules/ordermanage/assets/js/paymodal.js'); ?>" type="text/javascript"></script>
+<script>
+    $('#dismissModal1').click(function() {
+      $('#openpasswordCenter').modal('hide');
+    });
+    $(document).ready(function() {
+        $('#verifyfrm').on('keydown', function(event) {
+            if (event.key === 'Enter') {
+            event.preventDefault(); 
+            return false;
+            }
+        });
+    });
+</script>

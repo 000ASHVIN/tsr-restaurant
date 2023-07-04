@@ -5834,4 +5834,31 @@ class Order extends MX_Controller {
 		$data['customerorder']=$this->order_model->read('*', 'customer_order', array('order_id' => $id));
 		echo('window.orderinfo = ' . json_encode($data['customerorder']) . ';');
 		}
+	
+	public function verifypassword(){
+		$data['id'] = $this->input->get('id');
+		$this->load->view('verifypassword',$data);	
+	}
+
+	public function checkpassword(){
+
+		$id = $this->input->post('id');
+		$password = md5($this->input->post('manage_password'));
+
+		$user =  $this->db->select('*')
+						->from('user')
+						->where('id', $id)
+						->get()
+						->row();
+
+		$responseData = array();
+		
+		if ($password == $user->manage_password) {
+			$responseData['data'] = true;
+		} else {
+			$responseData['data'] = false;
+		}
+
+		echo json_encode($responseData);
+	}
 }

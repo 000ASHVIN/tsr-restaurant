@@ -2381,6 +2381,91 @@ $(document).on("keypress", '#itemqty_1', function(e){
       submenu.slideToggle(400, function() {});
   });
   
+    function openpassword(){
+            $.ajax({
+                url: basicinfo.baseurl + "ordermanage/order/verifypassword",
+                type: "GET",
+                success: function(data) {
+                    $('#openclosepassword').html(data);
+                    $("#openpassword").modal('show');
+                }
+            });
+    }
+    
+    function verifypassword() {
+        var form = $('#verifyfrm')[0];
+        var formdata = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            url: basicinfo.baseurl + "ordermanage/order/checkpassword",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var responseData = JSON.parse(data);
+                if(responseData.data == true){
+                    $("#openpassword").modal('hide');
+                    closeopenresister();
+                }else{
+                    alert("Something Wrong!!! .Please Enter Correct Password!!");
+                }
+            }
+        })
+    }
+
+    function verifydelete() {
+        var form = $('#verifyfrm')[0];
+        var formdata = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            url: basicinfo.baseurl + "ordermanage/order/checkpassword",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var responseData = JSON.parse(data);
+                if(responseData.data == true){
+                    $("#openpassword").modal('hide');
+                    var ordid= $('.cancelorder').attr("data-id");
+                    console.log(ordid);
+                    $("#cancelord").modal('show');
+                    $("#canordid").html(ordid);
+                    $("#mycanorder").val(ordid);
+                }else{
+                    alert("Something Wrong!!! .Please Enter Correct Password!!");
+                }
+            }
+        })
+    }
+
+    function verifydiscount() {
+        var form = $('#verifyfrm')[0];
+        var formdata = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            url: basicinfo.baseurl + "ordermanage/order/checkpassword",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var responseData = JSON.parse(data);
+                if(responseData.data == true){
+                    $("#openpasswordCenter").modal('hide');
+                    $('#addDiscount').show();
+                    $('.addDiscount').show();
+                    $('#discountAdded').hide();
+                }else{
+                    alert("Something Wrong!!! .Please Enter Correct Password!!");
+                }
+            }
+        })
+    }
+
+
+  
   
 
   

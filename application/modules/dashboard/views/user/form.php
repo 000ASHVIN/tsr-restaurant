@@ -49,6 +49,13 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="manage_password" class="col-sm-3 col-form-label">Manage Password *</label>
+                        <div class="col-sm-9">
+                            <input name="manage_password" class="form-control" type="password" placeholder="Manage Password" id="manage_password">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="about" class="col-sm-3 col-form-label"><?php echo display('about') ?></label>
                         <div class="col-sm-9">
                             <textarea name="about" placeholder="<?php echo display('about') ?>" class="form-control" id="about"><?php echo $user->about ?></textarea>

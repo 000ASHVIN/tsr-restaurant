@@ -50,7 +50,7 @@ class User extends MX_Controller {
 		#------------------------#
 		if (!empty($id)) {   
        		$this->form_validation->set_rules('email', display('email'), "required|valid_email|max_length[100]");
-       
+			$this->form_validation->set_rules('manage_password', 'Manage Password','required|max_length[32]|md5');
 		} else {
 			$this->form_validation->set_rules('email', display('email'),'required|valid_email|is_unique[user.email]|max_length[100]');
 		}
@@ -85,6 +85,7 @@ class User extends MX_Controller {
 			'lastname' 	  => $this->input->post('lastname',true),
 			'email' 	  => $this->input->post('email',true),
 			'password' 	  => md5($this->input->post('password')),
+			'manage_password' => md5($this->input->post('manage_password')),
 			'about' 	  => $this->input->post('about',true),
 			'image'   	  => (!empty($image)?$image:$this->input->post('old_image',true)),
 			'last_login'  => null,

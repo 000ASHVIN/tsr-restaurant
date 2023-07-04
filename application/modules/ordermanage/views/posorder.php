@@ -80,6 +80,13 @@ $ptdiscount = 0; ?>
     </div>
   </div>
 </div>
+<div id="openpassword" class="modal fade  bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="openclosepassword">
+      
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="vieworder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -625,7 +632,7 @@ foreach ($scan as $file) {
 
         <div class="tgbar">
 
-          <a href="javascript:;" class="btn" onclick="closeopenresister()" role="button"><i class="fa fa-window-close fa-lg"></i></a>
+          <a href="javascript:;" class="btn" onclick="openpassword()" role="button"><i class="fa fa-window-close fa-lg"></i></a>
           <?php if ($new_version > $myversion) {
             if ($versioncheck->version != $new_version) {
           ?>
