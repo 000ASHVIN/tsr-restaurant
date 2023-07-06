@@ -221,7 +221,21 @@
       var qty = 1;
       var price = panel.find('.panel-body input[name=select_product_price]').val();
       var hasaddons = panel.find('.panel-body input[name=select_addons]').val();
+      var totalStock = panel.find('.panel-body input[name=select_product_stock]').val();
       var csrf = $('#csrfhashresarvation').val();
+    
+      var usedStock = $("#"+"productionsetting-" + pid + "-" + sizeid);
+        if (usedStock.length) {
+            var usedStock = usedStock.text();
+        }else{
+            var usedStock = 0;
+        }
+        const canAdd = checkProductionStockAvailabilityOnAdd(totalStock,usedStock);
+        if (!canAdd) {
+            alert('Please check Ingredients! \n Some Ingredients are not Available!');
+            return false;
+        }
+
       if (hasaddons == 0 && totalvarient == 1 && customqty == 0) {
           /*check production*/
           var productionsetting = $('#production_setting').val();
@@ -285,7 +299,7 @@
               data: dataString,
               success: function(data) {
                   $('.addonsinfo').html(data);
-				  
+                  
                   $('#edit').modal('show');
 				  
 				  //$('#edit').find('.close').focus();

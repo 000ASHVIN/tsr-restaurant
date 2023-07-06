@@ -157,7 +157,13 @@ function checkProductionStockAvailability(element, pid, vid, extra = null) {
     return (stockedUsed <= totalStock);
 }
 
-function posupdatecart(element, id, pid, vid, qty, status) {    
+function checkProductionStockAvailabilityOnAdd(totalStock, usedStock) {
+    var totalStock = parseInt(totalStock);
+    return (usedStock < totalStock);
+}
+
+function posupdatecart(element, id, pid, vid, qty, status) {   
+
     if (status == "del" && qty == 0) {
         calculateCookingTime(status);
         return false;

@@ -881,6 +881,21 @@ foreach ($scan as $file) {
                             <div class="row row-m-3" id="product_search">
                               <?php $i = 0;
                               foreach ($itemlist as $item) {
+                                $CI =& get_instance();
+                                $CI->db = $CI->load->database('default', true);
+
+                                $productID = $item['ProductsID'];
+                                $variantId = $item['variantid'];
+
+                                $query = $CI->db->query("SELECT * FROM production_details  WHERE `foodid` = '$productID' AND `pvarientid` = '$variantId' ");
+                                $row = $query->row();
+
+                                $ingredientid = $row->ingredientid;
+
+                                $stock = $CI->db->query("SELECT * FROM ingredients  WHERE `id` = '$row->ingredientid'");
+
+                                $stock = $stock->row();
+                                
                                 $item = (object)$item;
                                 $i++;
                                 $this->db->select('*');
@@ -897,6 +912,7 @@ foreach ($scan as $file) {
                                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-p-3">
                                   <div class="panel panel-bd product-panel select_product">
                                     <div class="panel-body"> <img src="<?php echo base_url(!empty($item->small_thumb) ? $item->small_thumb : 'assets/img/icons/default.jpg'); ?>" class="img-responsive" alt="<?php echo $item->ProductName; ?>">
+                                    <input type="hidden" name="select_product_stock" class="select_product_stock" value="<?php echo $stock->stock_qty; ?>">
                                       <input type="hidden" name="select_product_id" class="select_product_id" value="<?php echo $item->ProductsID; ?>">
                                       <input type="hidden" name="select_totalvarient" class="select_totalvarient" value="<?php echo $item->totalvarient; ?>">
                                       <input type="hidden" name="select_iscustomeqty" class="select_iscustomeqty" value="<?php echo $item->is_customqty; ?>">
