@@ -231,7 +231,8 @@
             var usedStock = 0;
         }
         const canAdd = checkProductionStockAvailabilityOnAdd(totalStock,usedStock);
-        if (!canAdd) {
+        var productionsetting = $('#production_setting').val();
+        if (!canAdd && productionsetting == 1) {
             alert('Please check Ingredients! \n Some Ingredients are not Available!');
             return false;
         }
