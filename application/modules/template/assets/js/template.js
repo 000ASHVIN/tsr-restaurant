@@ -419,6 +419,9 @@ $(document).on('click', '.aceptorcancel', function(){
 			
 $(document).on('click', '.cancelorder', function(){ 
 				var ordid= $(this).attr("data-id");
+				// $("#cancelord").modal('show');
+				$("#canordid").html(ordid);
+				$("#mycanorder").val(ordid);
 				$.ajax({
 					url: basicinfo.baseurl + "ordermanage/order/verifypassword?id=" + ordid,
 					type: "GET",
@@ -427,9 +430,6 @@ $(document).on('click', '.cancelorder', function(){
 						$("#openpassword").modal('show');
 					}
 				});
-				// $("#cancelord").modal('show');
-				// $("#canordid").html(ordid);
-				// $("#mycanorder").val(ordid);
 			});  
 var allsalesreport=$('#myslreportsf').DataTable({ 
         responsive: true, 

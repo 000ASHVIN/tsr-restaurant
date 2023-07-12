@@ -2444,10 +2444,10 @@ $(document).on("keypress", '#itemqty_1', function(e){
                 if(responseData.data == true){
                     $("#openpassword").modal('hide');
                     var ordid= $('.cancelorder').attr("data-id");
-                    console.log(ordid);
+                    
                     $("#cancelord").modal('show');
-                    $("#canordid").html(ordid);
-                    $("#mycanorder").val(ordid);
+                    // $("#canordid").html(ordid);
+                    // $("#mycanorder").val(ordid);
                 }else{
                     alert("Something Wrong!!! .Please Enter Correct Password!!");
                 }
