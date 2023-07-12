@@ -2036,15 +2036,17 @@ public function get_orderlist(){
 			$ids[] = $multipay_id->multipay_id;
 		}
 
-		$this->db->select('bill.*,multipay_bill.payment_type_id,SUM(multipay_bill.amount) as totalamount,payment_method.payment_method');
-        $this->db->from('multipay_bill');
-		$this->db->join('bill','bill.order_id=multipay_bill.order_id','left');
-		$this->db->join('payment_method','payment_method.payment_method_id=multipay_bill.payment_type_id','left');
+		$this->db->select('bill.*,bill.payment_method_id as payment_type_id,SUM(bill.bill_amount) as totalamount,payment_method.payment_method,customer_order.order_status');
+        $this->db->from('bill');
+		// $this->db->join('bill','bill.order_id=multipay_bill.order_id','left');
+		$this->db->join('payment_method','payment_method.payment_method_id=bill.payment_method_id','left');
+		$this->db->join('customer_order','customer_order.order_id = bill.order_id','left');
 		// $this->db->where_in('multipay_bill.multipay_id', $ids);
 		$this->db->where('bill.create_by',$id);
 		$this->db->where($where);
 		$this->db->where('bill.bill_status',1);
-		$this->db->group_by('multipay_bill.payment_type_id');
+		$this->db->where('customer_order.order_status',4);
+		$this->db->group_by('bill.payment_method_id');
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		return $orderdetails=$query->result();

@@ -171,7 +171,9 @@ function posupdatecart(element, id, pid, vid, qty, status) {
         if (status == 'add') {
             // check available stock first
             const canAdd = checkProductionStockAvailability(element, pid, vid);
-            if (!canAdd) {
+            var productionsetting = $('#production_setting').val();
+
+            if (!canAdd && productionsetting == 1) {
                 alert('Please check Ingredients! \n Some Ingredients are not Available!');
                 return false;
             }
