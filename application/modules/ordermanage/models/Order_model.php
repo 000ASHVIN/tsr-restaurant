@@ -723,14 +723,22 @@ public function customer_dropdown()
 
 		$list[''] = 'Select Customer Type';
 		if (!empty($data)) {
-			foreach($data as $value)
-				$list[$value->customer_type_id] = $value->customer_type;
-			return $list;
-		} else {
-			return false; 
+			$customerTypes = [];
+			foreach ($data as $value) {
+				$customerTypes[$value->customer_type_id] = $value->customer_type;
+			}
+			$takeAwayValue = isset($customerTypes[4]) ? $customerTypes[4] : null;
+			unset($customerTypes[4]);
+		
+			if ($takeAwayValue !== null) {
+				$customerTypes = [4 => $takeAwayValue] + $customerTypes;
+			}
+			$list = $customerTypes;
 		}
+		return $list;
 	}
-  public function thirdparty_dropdown()
+
+	public function thirdparty_dropdown()
 	{
 		$data = $this->db->select("*")
 			->from('tbl_thirdparty_customer')
