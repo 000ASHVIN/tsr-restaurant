@@ -585,7 +585,7 @@ body
                     <div class="item-info">
                         <h5 class="item-title"><?php echo display('totalfcpayment')?></h5>
                     </div>
-                    <h5 class="my-5"> <?php if($billinfo->bill_status==1){echo ($customepaid * 2000)." ". $currencyFc->curr_icon;}?></h5>
+                    <h5 class="my-5"> <?php if($billinfo->bill_status==1){echo ($customepaid * $currencyFc->curr_rate)." ". $currencyFc->curr_icon;}?></h5>
                 </div>
             </div>
             
