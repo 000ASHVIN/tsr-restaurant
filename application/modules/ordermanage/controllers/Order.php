@@ -2313,6 +2313,7 @@ class Order extends MX_Controller {
 		}
 	public function modifyoreder(){
 		$orderid                 = $this->input->post('updateid');
+		$dataup['customer_id']   = $this->input->post('customer_name');
 		$dataup['cutomertype']   = $this->input->post('ctypeid');
 		$dataup['waiter_id']     = $this->input->post('waiter',true);
 		$dataup['isthirdparty']  = $this->input->post('delivercom',true);
